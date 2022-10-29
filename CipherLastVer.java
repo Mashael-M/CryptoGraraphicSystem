@@ -58,14 +58,15 @@ public class CipherLastVer {
     }
 
     private static void MenuChoices() {
-        System.out.println(" A SYMMETRIC CRYPTO SYSTEM\n"
-                + "======================================= \n"
-                + "MAIN MENU \n"
-                + "------------------------------------- \n"
-                + "1. Encrypt \n"
-                + "2. Decrypt \n"
-                + "3. Exit \n"
-                + "-----------------------------------------\n");
+        System.out.println("     A SYMMETRIC CRYPTO SYSTEM\n"
+                
+                + "\n            MAIN MENU \n"
+                + "---------------------------------------- \n"
+                + "What do you need to Do? \n\n"
+                + "   1. Encrypt \n"
+                + "   2. Decrypt \n"
+                + "   3. Exit \n"
+                + "----------------------------------------\n");
     }
 
     public static void Encrypt_Option() {

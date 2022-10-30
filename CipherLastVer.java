@@ -109,7 +109,7 @@ public class CipherLastVer {
                         if (file.getName().endsWith("txt")) {
 				if (algorithmType.equalsIgnoreCase("AES"))//accept lower or upper case 
 				{
-                               		AES_Encrypt(key, getNameWithoutExtension(FileFolder));// getAbsolutePath This function returns the absolute pathname of the given file
+                               		AES_Encrypt(key, getNameWithoutExtension(FileFolder));
                          	} else if (algorithmType.equalsIgnoreCase("DES")) {
                              	 	DES_Encrypt(key, getNameWithoutExtension(FileFolder));
                             	}
@@ -122,7 +122,6 @@ public class CipherLastVer {
             } else if (option != 1 || option != 2) {
                 System.out.println("Invalid choice ):  \t  Enter choice 1 to File  \t or 2 to Folder  try agin \n");
                 Encrypt_Option();
-                System.out.println("");
                 break;
             }
 
@@ -165,9 +164,9 @@ public class CipherLastVer {
             File dir = new File(FileFolder);
             for (File file : dir.listFiles()) {
                 if (file.getName().endsWith("encrypted")) {
-			if (algorithmType.equalsIgnoreCase("AES"))//accept lower or upper case 
+			if (algorithmType.equalsIgnoreCase("AES"))
 			{
-			AES_Encrypt(key, getNameWithoutExtension(FileFolder));// getAbsolutePath This function returns the absolute pathname of the given file
+			AES_Encrypt(key, getNameWithoutExtension(FileFolder));
                         } else if (algorithmType.equalsIgnoreCase("DES")) {
 =			DES_Encrypt(key, getNameWithoutExtension(FileFolder));
                        	}

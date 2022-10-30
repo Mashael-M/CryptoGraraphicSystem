@@ -1,7 +1,7 @@
 
 package text;
-import java.io.File;
-import java.io.FileInputStream;//writing data from file 
+import java.io.File; // if the file exists ((file info))
+import java.io.FileInputStream;//writing data from file "Reading data to a file".
 import java.io.FileOutputStream;//writing data into file 
 import java.security.Key;
 import java.util.*;
@@ -17,15 +17,16 @@ public class Text {
         Scanner input = new Scanner(System.in); 
             int choiceInput; //user input chosen method
             
-             System.out.println(" A SYMMETRIC CRYPTO SYSTEM\n"
-                + "======================================= \n"
-                + "MAIN MENU \n"
-                + "------------------------------------- \n"
-                +"     WHAT DO YO WANT TO IMPLEMENT ? \n"
-                + "1. Encrypt \n"
-                + "2. Decrypt \n"
-                + "3. Exit \n"
-                + "-----------------------------------------\n");
+             System.out.println("     A SYMMETRIC CRYPTO SYSTEM\n"
+                
+                + "\n            MAIN MENU \n"
+                + "---------------------------------------- \n"
+                + "WHAT DO YO WANT TO IMPLEMENT ? \n\n"
+                + "   1. Encrypt \n"
+                + "   2. Decrypt \n"
+                + "   3. Exit \n"
+                + "----------------------------------------\n"); 
+        
     choiceInput = input.nextInt();
             
 
@@ -45,7 +46,7 @@ public class Text {
                 }
        
     }  public static void Encrypt_Option() {
-        Scanner input = new Scanner(System.in); //عبارة عن اتاحه اخذ بيانات من المستخدم عشان يختار ملف اومجلد 
+        Scanner input = new Scanner(System.in); //( يستقبل بيانات من المستخدم (يختار ملف اومجلد 
         int option = 0;
         String FileFolder = "";
         String algorithm;
@@ -76,11 +77,11 @@ public class Text {
                     algorithm = input.next();
                     System.out.print("Enter key : ");
                     key = input.next();
-                    File dir = new File(FileFolder);
-                    for (File file : dir.listFiles()) {
+                    File dir = new File(FileFolder);// to create a File object using a constructor that includes a filename as its argument
+                    for (File file : dir.listFiles()) {//returns an array of File objects that are the contents of the directory.
                         if (file.getName().endsWith("txt")) {
                             if (algorithm.equalsIgnoreCase("AES")) {
-                                AES_Encrypt(key, file.getAbsolutePath());
+                                AES_Encrypt(key, file.getAbsolutePath());// return the absolute (complete) path from the root directories
 
                         }
                     }
@@ -130,11 +131,11 @@ public class Text {
                     algorithm = input.next();
                     System.out.print("Enter  key : ");
                     key = input.next();
-                    File dir = new File(FileFolder);
-                    for (File file : dir.listFiles()) {
+                    File dir = new File(FileFolder); // to create a File object using a constructor that includes a filename as its argument
+                    for (File file : dir.listFiles()) { //returns an array of File objects that are the contents of the directory.
                         if (file.getName().endsWith("encrypted")) {
                             if (algorithm.equalsIgnoreCase("AES")) {
-                                AES_Decrypt(key, file.getAbsolutePath());//
+                                AES_Decrypt(key, file.getAbsolutePath()); // return the absolute (complete) path from the root directories
                         }
                     }
 //                    break;
@@ -152,6 +153,7 @@ public class Text {
             
         
     // end Decrypt_Option
+    //-------------------------AES Enc Part----------------------------
 
     public static void AES_Encrypt(String key, String input) {
         try {
@@ -161,13 +163,13 @@ public class Text {
             Cipher cipher = Cipher.getInstance("AES");
             cipher.init(Cipher.ENCRYPT_MODE, secretKey);
 
-            FileInputStream inputStream = new FileInputStream(inFile);
+            FileInputStream inputStream = new FileInputStream(inFile);// Creates a FileInputStream by opening a connection to an actual file, the file named by the File object file in the file system
             byte[] inputBytes = new byte[(int) inFile.length()];
             inputStream.read(inputBytes);
 
             byte[] outputBytes = cipher.doFinal(inputBytes);
 
-            FileOutputStream outputStream = new FileOutputStream(outFile);
+            FileOutputStream outputStream = new FileOutputStream(outFile);// Creates a FileInputStream by opening a connection to an actual file, the file named by the File object file in the file system
             outputStream.write(outputBytes);
             outputStream.flush();
             inputStream.close();
@@ -179,9 +181,10 @@ public class Text {
             System.out.println(ex.getMessage());
             ex.printStackTrace();
         }
-    }
+    }//end AES Enc
 
-    ///////////////////////////////////////////////////////////////////////////////////
+
+    //-------------------------AES Dec Part----------------------------
     public static void AES_Decrypt(String key, String input) {
         try {
             File inFile = new File(input);
@@ -206,5 +209,5 @@ public class Text {
             System.out.println(ex.getMessage());
             ex.printStackTrace();
         }
-    }
+    }//end AES Dec
 }

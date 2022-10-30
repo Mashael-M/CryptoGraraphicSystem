@@ -218,7 +218,7 @@ public class CipherLastVer {
             System.out.println("Output file is " + fileNameWithoutExtension + ".encrypted");
         } catch (Exception e) {
             System.out.println(e.getMessage());
-             System.out.println("TRY AGAIN!");
+            System.out.println("TRY AGAIN!");
         }
     }
 
@@ -254,26 +254,33 @@ public class CipherLastVer {
       public static void DES_Encrypt(String key, String input) {        try {
             File inFile = new File(input);
             File outFile = new File(input.replace(".txt", ".encrypted"));
-            DESKeySpec keySpec = new DESKeySpec(key.getBytes());
+           
+	    DESKeySpec keySpec = new DESKeySpec(key.getBytes());
             SecretKeyFactory keyFac = SecretKeyFactory.getInstance("DES");
             SecretKey desKey = keyFac.generateSecret(keySpec);
+	      
             Cipher cipher = Cipher.getInstance("DES");
             cipher.init(Cipher.ENCRYPT_MODE, desKey);
-            FileInputStream inputStream = new FileInputStream(inFile);
+            
+	    FileInputStream inputStream = new FileInputStream(inFile);
             byte[] inputBytes = new byte[(int) inFile.length()];
             inputStream.read(inputBytes);
             byte[] outputBytes = cipher.doFinal(inputBytes);
-            FileOutputStream stream = new FileOutputStream(outFile);
+            
+	    FileOutputStream stream = new FileOutputStream(outFile);
             stream.write(outputBytes);
-            stream.flush();
+            
+	    stream.flush();
             inputStream.close();
             stream.close();
 
             System.out.println("Done! File " + inFile.getName() + " is Encrypted using DES");
             System.out.println("Output file is " + outFile.getName());
+	      
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
             ex.printStackTrace();
+	    System.out.println("TRY AGAIN!");
         }
       }
       
@@ -283,29 +290,33 @@ public class CipherLastVer {
         try {
             File inFile = new File(input);
             File outFile = new File(inFile.getAbsolutePath().replace(".encrypted", ".decrypted"));
+		
             DESKeySpec keySpec = new DESKeySpec(key.getBytes());
             SecretKeyFactory keyFac = SecretKeyFactory.getInstance("DES");
             SecretKey desKey = keyFac.generateSecret(keySpec);
+		
             Cipher cipher = Cipher.getInstance("DES");
             cipher.init(Cipher.DECRYPT_MODE, desKey);
 
             FileInputStream inputStream = new FileInputStream(inFile);
             byte[] inputBytes = new byte[(int) inFile.length()];
             inputStream.read(inputBytes);
-
             byte[] outputBytes = cipher.doFinal(inputBytes);
 
             FileOutputStream stream = new FileOutputStream(outFile);
             stream.write(outputBytes);
+		
             stream.flush();
             inputStream.close();
             stream.close();
 
             System.out.println("Done! File " + inFile.getName() + " is Decrypted using DES");
             System.out.println("Output file is " + outFile.getName());
+		
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
             ex.printStackTrace();
+	    System.out.println("TRY AGAIN!");
         }
        }
     

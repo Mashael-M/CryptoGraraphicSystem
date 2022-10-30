@@ -110,12 +110,12 @@ public class CipherLastVer {
                     for (File file : dir.listFiles())// The function returns a File array, or null value if the file object is a file
                     {
                         if (file.getName().endsWith("txt")) {
-                            if (algorithmType.equalsIgnoreCase("AES"))//accept lower or upper case 
-                            {
-                                AES_Encrypt(key, file.getAbsolutePath());// getAbsolutePath This function returns the absolute pathname of the given file
-                            } else if (algorithmType.equalsIgnoreCase("DES")) {
-                                DES_Encrypt(key, file.getAbsolutePath());
-                            }
+				if (algorithmType.equalsIgnoreCase("AES"))//accept lower or upper case 
+				{
+                               		AES_Encrypt(key, getNameWithoutExtension(FileFolder));// getAbsolutePath This function returns the absolute pathname of the given file
+                         	} else if (algorithmType.equalsIgnoreCase("DES")) {
+                             	 	DES_Encrypt(key, getNameWithoutExtension(FileFolder));
+                            	}
 
                         }
                     }
@@ -168,9 +168,12 @@ public class CipherLastVer {
             File dir = new File(FileFolder);
             for (File file : dir.listFiles()) {
                 if (file.getName().endsWith("encrypted")) {
-                    if (algorithm.equalsIgnoreCase("AES")) {
-                        AES_Encrypt(key, file.getAbsolutePath());//
-                    }
+			if (algorithmType.equalsIgnoreCase("AES"))//accept lower or upper case 
+			{
+			AES_Encrypt(key, getNameWithoutExtension(FileFolder));// getAbsolutePath This function returns the absolute pathname of the given file
+                        } else if (algorithmType.equalsIgnoreCase("DES")) {
+=			DES_Encrypt(key, getNameWithoutExtension(FileFolder));
+                       	}
                 }
 //                    break;
             }

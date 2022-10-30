@@ -6,9 +6,9 @@ package cipherlastver;
 
 
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
+import java.io.File; // if the file exists ((file info)
+import java.io.FileInputStream;//writing data from file "Reading data to a file".
+import java.io.FileOutputStream;//writing data into file
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -43,7 +43,7 @@ public class CipherLastVer {
                     } else {
                         Decrypt_Option();
                     }
-                    //اعادة ادخال البيانات 
+                    //(مره اخرى  (ادخال البيانات 
                     MenuChoices();
                 } //نوقف  
                 else {
@@ -56,6 +56,7 @@ public class CipherLastVer {
             }
         }
     }
+	 //-------------------------MenuChoices Part----------------------------
 
     private static void MenuChoices() {
         System.out.println("     A SYMMETRIC CRYPTO SYSTEM\n"
@@ -68,7 +69,9 @@ public class CipherLastVer {
                 + "   3. Exit \n"
                 + "----------------------------------------\n");
     }
-
+	
+	
+    //-------------------------Encrypt Option Part----------------------------
     public static void Encrypt_Option() {
         Scanner input = new Scanner(System.in); //عبارة عن اتاحه اخذ بيانات من المستخدم عشان يختار ملف اومجلد 
         int option = 0; //varibale for choice input 
@@ -128,7 +131,9 @@ public class CipherLastVer {
 
         }
     }// end Encrypt_Option
-
+	
+	
+    //-------------------------Encrypt Option Part----------------------------
     public static void Decrypt_Option() {
         Scanner input = new Scanner(System.in); //عبارة عن اتاحه اخذ بيانات من المستخدم 
         int option = 0;
@@ -179,31 +184,32 @@ public class CipherLastVer {
     }
 
     // end Decrypt_Option
-    ///////////////////////////////////////////////////////////////////
     
     
+    //-------------------------Name without extension Part----------------------------
     private static String getNameWithoutExtension(String filePath) {
         int index = filePath.lastIndexOf("."); //get last index of "."
         return filePath.substring(0, index); //return substring from last "." to end
     }
     
     
-    ////////////////////////////////////////////////////////////////////
+    //-------------------------AES Enc Part----------------------------
+	
     public static void AES_Encrypt(String fileName, String key) {
         byte[] keyBytes = (key).getBytes(); // convert key string to byte array
 
         SecretKeySpec secretKeySpec = new SecretKeySpec(keyBytes, "AES"); //constructs a SecretKey from a byte array
 
         try {
-            Cipher cipher = Cipher.getInstance("AES"); //Get Cipher Instance for "AES" algorithm
+            Cipher cipher = Cipher.getInstance("AES"); //استدعاء AES algo          //Get Cipher Instance for "AES" algorithm
 
             String fileNameWithoutExtension = getNameWithoutExtension(fileName); //get file name without extension
             cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec); //Cipher initialized with key for encryption mode
-            Path inputPath = Paths.get(fileName); //create path object from string file path
+            Path inputPath = Paths.get(fileName); //create path object from string file path // انشاء ojt من امتداد الفايل 
             byte[] data = Files.readAllBytes(inputPath); //reads All Bytes from the file path
             byte[] encrypted = cipher.doFinal(data); //Encrypts data bytes
 
-            Path outputPath = Paths.get(fileNameWithoutExtension + ".encrypted"); //create path object from string file path
+            Path outputPath = Paths.get(fileNameWithoutExtension + ".encrypted"); //create path object from string file path// اعطاء امتداد للفايل
             Files.write(outputPath, encrypted); //writes byte array to output file path
             System.out.println("Done! File " + fileName + " is encrypted using AES-192");
             System.out.println("Output file is " + fileNameWithoutExtension + ".encrypted");
@@ -213,7 +219,7 @@ public class CipherLastVer {
         }
     }
 
-    
+     //-------------------------AES Dec Part----------------------------    
      public static void AES_Decrypt(String key, String fileName) {
      		byte[] keyBytes = (key).getBytes(); // converts key string to byte array
 		
@@ -223,10 +229,10 @@ public class CipherLastVer {
 			String fileNameWithoutExtension = getNameWithoutExtension(fileName); //get file name without extension
 			cipher.init(Cipher.DECRYPT_MODE, secretKeySpec); //Cipher initialized with key for decryption mode
 			Path inputPath = Paths.get(fileName); //create path object from string file path
-			byte[] data = Files.readAllBytes(inputPath); //reads All Bytes from the file path
-		    byte[] decrypted = cipher.doFinal(data); //Decrypt data bytes
+			byte[] data = Files.readAllBytes(inputPath); //reads All Bytes from the file path // يخزن محتوى الفايل في اراي
+		    byte[] decrypted = cipher.doFinal(data); //Decrypt data bytes // يفك التشفير 
 		    
-		    Path outputPath = Paths.get(fileNameWithoutExtension + ".decrypted"); //create path object from string file path
+		    Path outputPath = Paths.get(fileNameWithoutExtension + ".decrypted"); //create path object from string file path // يسند له امتداد 
 		    Files.write(outputPath, decrypted); //writes byte array to output file path
 		    
 		    System.out.println("Done! File " + fileName + " is decrypted using AES-192");
@@ -237,16 +243,10 @@ public class CipherLastVer {
      }
      
      
+    
      
      
-     
-     
-     
-     
-     
-     
-     ///////////////////////////////////////////////////////////////////////////////////////
-     
+     //-------------------------DES Enc Part----------------------------
      
       public static void DES_Encrypt(String key, String input) {        try {
             File inFile = new File(input);
@@ -274,7 +274,8 @@ public class CipherLastVer {
         }
       }
       
-      
+	
+      //-------------------------DES Dec Part----------------------------
        public static void DES_Decrypt(String key, String input) {
         try {
             File inFile = new File(input);

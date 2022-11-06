@@ -70,7 +70,7 @@ public class CipherLastVer {
 	
     //-------------------------Encrypt Option Part----------------------------
     public static void Encrypt_Option() {
-        Scanner input = new Scanner(System.in); //عبارة عن اتاحه اخذ بيانات من المستخدم عشان يختار ملف اومجلد 
+        Scanner input = new Scanner(System.in); 
         int option = 0; //varibale for choice input 
         String FileFolder = "";
         String algorithmType;
@@ -131,7 +131,7 @@ public class CipherLastVer {
 	
     //-------------------------Encrypt Option Part----------------------------
     public static void Decrypt_Option() {
-        Scanner input = new Scanner(System.in); //عبارة عن اتاحه اخذ بيانات من المستخدم 
+        Scanner input = new Scanner(System.in); 
         int option = 0;
         String FileFolder = "";
         String algorithm;
